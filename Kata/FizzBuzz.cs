@@ -31,15 +31,20 @@ namespace Kata
 
         private string GetOutputByNumber(int number)
         {
-            string outputByNumber;
+            string outputByNumber = null;
+            
             if (IsDivisibleBy3And5(number))
                 outputByNumber = Fizz_Buzz;
-            else if (IsDivisibleBy3(number))
+            
+            if (outputByNumber == null && IsDivisibleBy3(number))
                 outputByNumber = Fizz;
-            else if (IsDivisibleBy5(number))
+            
+            if (outputByNumber == null && IsDivisibleBy5(number))
                 outputByNumber = Buzz;
-            else
+            
+            if (outputByNumber == null)
                 outputByNumber = number.ToString();
+            
             return outputByNumber;
         }
 
@@ -50,12 +55,17 @@ namespace Kata
 
         private bool IsDivisibleBy5(int number)
         {
-            return number % 5 == 0;
+            return IsDivisibleBy(5, number);
         }
 
         private bool IsDivisibleBy3(int number)
         {
-            return number % 3 == 0;
+            return IsDivisibleBy(3, number);
+        }
+
+        private static bool IsDivisibleBy(int divisor, int number)
+        {
+            return number % divisor == 0;
         }
     }
 }
