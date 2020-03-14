@@ -58,12 +58,6 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Advanced\BusinessController.cs" />
-    <Compile Include="Advanced\BusinessEntity.cs" />
-    <Compile Include="Advanced\BusinessRepository.cs" />
-    <Compile Include="Advanced\EntityBase.cs" />
-    <Compile Include="Advanced\IBusinessEntityService.cs" />
-    <Compile Include="Advanced\IRepository.cs" />
     <Compile Include="FizzBuzz.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

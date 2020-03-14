@@ -82,9 +82,6 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Advanced\BusinessControllerTests.cs" />
-    <Compile Include="AutoDataAttributes\AutoConfiguredNSubstituteDataAttribute.cs" />
-    <Compile Include="AutoDataAttributes\AutoNSubstituteDataAttribute.cs" />
     <Compile Include="FizzBuzzTest.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
