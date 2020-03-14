@@ -4,11 +4,11 @@ namespace Kata.XUnit.Tests
 {
     public class DirectOutputGeneratorTest
     {
-        private DirectOutputGenerator directOutputGenerator;
+        private OutputByNumberGenerator directOutputGenerator;
 
         public DirectOutputGeneratorTest()
         {
-            directOutputGenerator = new DirectOutputGenerator();
+            directOutputGenerator = DirectOutputGenerator.For();
         }
 
         [Fact]
@@ -16,7 +16,7 @@ namespace Kata.XUnit.Tests
         {
             var input = 1;
             
-            var output = directOutputGenerator.GenerateOutputByNumber(input);
+            var output = directOutputGenerator(input);
             
             Assert.Equal(input.ToString(), output);
         }

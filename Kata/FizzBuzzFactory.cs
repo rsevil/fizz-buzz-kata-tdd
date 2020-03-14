@@ -3,30 +3,30 @@ using System.Collections.Generic;
 namespace Kata
 {
     public delegate List<string> FizzBuzz(List<int> numbers);
-    
-    public class FizzBuzzFactory
+
+    public static class FizzBuzzFactory
     {
         private const string Fizz = "Fizz";
         private const string Buzz = "Buzz";
         
-        public FizzBuzz Create()
+        public static FizzBuzz Create()
         {
-            var isNumberDivisibleBy3Rule = new IsNumberDivisibleByRule(3);
-            var isNumberDivisibleBy5Rule = new IsNumberDivisibleByRule(5);
-            var isNumberDivisibleBy3And5Rule = new AndNumberMatchingRule(
+            var isNumberDivisibleBy3Rule = IsNumberDivisibleByRuleFn.Where(3);
+            var isNumberDivisibleBy5Rule = IsNumberDivisibleByRuleFn.Where(5);
+            var isNumberDivisibleBy3And5Rule = AndNumberMatchingRule.And(
                 isNumberDivisibleBy3Rule, isNumberDivisibleBy5Rule);
 
-            var fizzBuzzGenerator = new OutputByRuleGenerator(isNumberDivisibleBy3And5Rule, Fizz + Buzz);
+            var fizzBuzzGenerator = OutputByRuleGenerator.For(isNumberDivisibleBy3And5Rule, Fizz + Buzz);
             
-            var fizzGenerator = new OutputByRuleGenerator(isNumberDivisibleBy3Rule, Fizz);
-            var buzzGenerator = new OutputByRuleGenerator(isNumberDivisibleBy5Rule, Buzz);
-            var numberGenerator = new DirectOutputGenerator();
+            var fizzGenerator = OutputByRuleGenerator.For(isNumberDivisibleBy3Rule, Fizz);
+            var buzzGenerator = OutputByRuleGenerator.For(isNumberDivisibleBy5Rule, Buzz);
+            var numberGenerator = DirectOutputGenerator.For();
             
-            var multipleOutputByNumbersGenerator = new MultipleOutputByNumbersGenerator(
+            var multipleOutputByNumbersGenerator = MultipleOutputByNumbersGenerator.For(
                 fizzBuzzGenerator, fizzGenerator, buzzGenerator, numberGenerator
             );
             
-            return multipleOutputByNumbersGenerator.GenerateOutput;
+            return numbers => multipleOutputByNumbersGenerator(numbers);
         }
     }
 }

@@ -4,38 +4,32 @@ using System.Linq;
 
 namespace Kata
 {
-    public class MultipleOutputByNumbersGenerator
+    public delegate List<string> MultipleOutputByNumbersGeneratorFn(List<int> numbers);
+    
+    public static class MultipleOutputByNumbersGenerator 
     {
-        private readonly OutputByNumberGenerator[] generators;
-
-        public MultipleOutputByNumbersGenerator(params OutputByNumberGenerator[] generators)
+        public static MultipleOutputByNumbersGeneratorFn For(params OutputByNumberGenerator[] generators)
         {
-            this.generators = generators;
+            return numbers =>
+            {
+                if (!numbers.Any())
+                    throw new Exception();
+                
+                return MapToOutput(numbers, generators);
+            };
         }
-
-        public List<string> GenerateOutput(List<int> numbers)
-        {
-            EnsureInputIsNotEmpty(numbers);
-            return MapToOutput(numbers);
-        }
-
-        private static void EnsureInputIsNotEmpty(List<int> numbers)
-        {
-            if (!numbers.Any())
-                throw new Exception();
-        }
-
-        private List<string> MapToOutput(List<int> numbers)
+        
+        private static List<string> MapToOutput(List<int> numbers, OutputByNumberGenerator[] generators)
         {
             return numbers
-                .Select(GenerateOutputByNumber)
+                .Select(number => GenerateOutputByNumber(number, generators))
                 .ToList();
         }
 
-        private string GenerateOutputByNumber(int number)
+        private static string GenerateOutputByNumber(int number, OutputByNumberGenerator[] generators)
         {
             return generators
-                .Select(generator => generator.GenerateOutputByNumber(number))
+                .Select(generator => generator(number))
                 .First(output => !string.IsNullOrEmpty(output));
         }
     }

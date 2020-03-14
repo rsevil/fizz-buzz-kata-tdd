@@ -1,7 +1,4 @@
 namespace Kata
 {
-    public interface NumberMatchingRule
-    {
-        bool Matches(int number);
-    }
+    public delegate bool NumberMatchingRule(int number);
 }

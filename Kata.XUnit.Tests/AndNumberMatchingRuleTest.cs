@@ -7,23 +7,23 @@ namespace Kata.XUnit.Tests
     {
         private NumberMatchingRule left;
         private NumberMatchingRule right;
-        private AndNumberMatchingRule andNumberMatchingRule;
+        private NumberMatchingRule andNumberMatchingRule;
 
         public AndNumberMatchingRuleTest()
         {
             left = Substitute.For<NumberMatchingRule>();
             right = Substitute.For<NumberMatchingRule>();
             
-            andNumberMatchingRule = new AndNumberMatchingRule(left, right);
+            andNumberMatchingRule = AndNumberMatchingRule.And(left, right);
         }
 
         [Fact]
         public void matches()
         {
-            left.Matches(Arg.Any<int>()).Returns(true);
-            right.Matches(Arg.Any<int>()).Returns(true);
+            left(Arg.Any<int>()).Returns(true);
+            right(Arg.Any<int>()).Returns(true);
 
-            var matches = andNumberMatchingRule.Matches(1);
+            var matches = andNumberMatchingRule(1);
             
             Assert.True(matches);
         }
@@ -31,10 +31,10 @@ namespace Kata.XUnit.Tests
         [Fact]
         public void dont_matches_by_left()
         {
-            left.Matches(Arg.Any<int>()).Returns(false);
-            right.Matches(Arg.Any<int>()).Returns(true);
+            left(Arg.Any<int>()).Returns(false);
+            right(Arg.Any<int>()).Returns(true);
 
-            var matches = andNumberMatchingRule.Matches(1);
+            var matches = andNumberMatchingRule(1);
             
             Assert.False(matches);
         }
@@ -42,10 +42,10 @@ namespace Kata.XUnit.Tests
         [Fact]
         public void dont_matches_by_right()
         {
-            left.Matches(Arg.Any<int>()).Returns(true);
-            right.Matches(Arg.Any<int>()).Returns(false);
+            left(Arg.Any<int>()).Returns(true);
+            right(Arg.Any<int>()).Returns(false);
 
-            var matches = andNumberMatchingRule.Matches(1);
+            var matches = andNumberMatchingRule(1);
             
             Assert.False(matches);
         }

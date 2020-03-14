@@ -1,7 +1,4 @@
 namespace Kata
 {
-    public interface OutputByNumberGenerator
-    {
-        string GenerateOutputByNumber(int number);
-    }
+    public delegate string OutputByNumberGenerator(int number);
 }

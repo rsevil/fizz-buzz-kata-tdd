@@ -20,7 +20,7 @@ namespace Kata
                 TryOutputFizzBuzz,
                 TryOutputFizz,
                 TryOutputBuzz,
-                outputGenerator.GenerateOutputByNumber,
+                i => outputGenerator(i),
                 OutputNumber,
             };
         }

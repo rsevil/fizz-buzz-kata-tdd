@@ -11,7 +11,7 @@ namespace Kata.XUnit.Tests
 
         public FizzBuzzTest()
         {
-            fizzBuzz = new FizzBuzzFactory().Create();
+            fizzBuzz = FizzBuzzFactory.Create();
         }
 
         [Fact]

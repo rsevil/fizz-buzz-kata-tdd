@@ -8,7 +8,7 @@ namespace Kata.XUnit.Tests
 {
     public class MultipleOutputByNumbersGeneratorTest
     {
-        private MultipleOutputByNumbersGenerator multipleOutputByNumbersGenerator;
+        private MultipleOutputByNumbersGeneratorFn multipleOutputByNumbersGenerator;
 
         public MultipleOutputByNumbersGeneratorTest()
         {
@@ -16,7 +16,7 @@ namespace Kata.XUnit.Tests
             var generator2 = GetOutputByNumberGenerator(2);
             var generator3 = GetOutputByNumberGenerator(3);
             
-            multipleOutputByNumbersGenerator = new MultipleOutputByNumbersGenerator(
+            multipleOutputByNumbersGenerator = MultipleOutputByNumbersGenerator.For(
                 generator, generator2, generator3);
         }
 
@@ -25,7 +25,7 @@ namespace Kata.XUnit.Tests
         {
             var numbers = new List<int> {1, 2, 3};
 
-            var result = multipleOutputByNumbersGenerator.GenerateOutput(numbers);
+            var result = multipleOutputByNumbersGenerator(numbers);
             
             Assert.Equal("1", result[0]);
             Assert.Equal("2", result[1]);
@@ -37,7 +37,7 @@ namespace Kata.XUnit.Tests
         {
             var numbers = new List<int>();
 
-            Action action = () => multipleOutputByNumbersGenerator.GenerateOutput(numbers);
+            Action action = () => multipleOutputByNumbersGenerator(numbers);
 
             Assert.Throws<Exception>(action);
         } 
@@ -45,8 +45,8 @@ namespace Kata.XUnit.Tests
         private static OutputByNumberGenerator GetOutputByNumberGenerator(int number)
         {
             var outputByNumberGenerator = Substitute.For<OutputByNumberGenerator>();
-            outputByNumberGenerator.GenerateOutputByNumber(Arg.Any<int>()).ReturnsNull();
-            outputByNumberGenerator.GenerateOutputByNumber(number).Returns(number.ToString());
+            outputByNumberGenerator(Arg.Any<int>()).ReturnsNull();
+            outputByNumberGenerator(number).Returns(number.ToString());
             return outputByNumberGenerator;
         }
     }

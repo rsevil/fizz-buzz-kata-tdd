@@ -1,17 +1,10 @@
 namespace Kata
 {
-    public class IsNumberDivisibleByRule : NumberMatchingRule
+    public static class IsNumberDivisibleByRuleFn
     {
-        private readonly int divisor;
-
-        public IsNumberDivisibleByRule(int divisor)
+        public static NumberMatchingRule Where(int divisor)
         {
-            this.divisor = divisor;
-        }
-
-        public bool Matches(int number)
-        {
-            return number % divisor == 0;
+            return number => number % divisor == 0;
         }
     }
 }

@@ -1,10 +1,10 @@
 namespace Kata
 {
-    public class DirectOutputGenerator : OutputByNumberGenerator
+    public static class DirectOutputGenerator
     {
-        public string GenerateOutputByNumber(int number)
+        public static OutputByNumberGenerator For()
         {
-            return number.ToString();
+            return number => number.ToString();
         }
     }
 }

@@ -1,24 +1,10 @@
 namespace Kata
 {
-    public class OutputByRuleGenerator : OutputByNumberGenerator
+    public static class OutputByRuleGenerator
     {
-        private readonly NumberMatchingRule rule;
-        private readonly string output;
-
-        public OutputByRuleGenerator(NumberMatchingRule rule, string output)
+        public static OutputByNumberGenerator For(NumberMatchingRule rule, string output)
         {
-            this.rule = rule;
-            this.output = output;
-        }
-
-        public string GenerateOutputByNumber(int number)
-        {
-            return When(rule.Matches(number), output);
-        }
-
-        private static string When(bool matches, string output)
-        {
-            return matches ? output : default(string);
+            return number => rule(number) ? output : default(string);
         }
     }
 }
