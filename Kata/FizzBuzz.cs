@@ -31,21 +31,39 @@ namespace Kata
 
         private string GetOutputByNumber(int number)
         {
-            string outputByNumber = null;
-            
-            if (IsDivisibleBy3And5(number))
-                outputByNumber = Fizz_Buzz;
-            
-            if (outputByNumber == null && IsDivisibleBy3(number))
-                outputByNumber = Fizz;
-            
-            if (outputByNumber == null && IsDivisibleBy5(number))
-                outputByNumber = Buzz;
+            var outputByNumber = OutputFizzBuzz(number);
             
             if (outputByNumber == null)
-                outputByNumber = number.ToString();
+                outputByNumber = OutputByFizz(number);
+            
+            if (outputByNumber == null)
+                outputByNumber = OutputByBuzz(number);
+            
+            if (outputByNumber == null)
+                outputByNumber = OutputNumber(number);
             
             return outputByNumber;
+        }
+
+        private static string OutputNumber(int number)
+        {
+            return number.ToString();
+        }
+
+        private string OutputByBuzz(int number)
+        {
+            return IsDivisibleBy5(number) ? Buzz : null;
+        }
+
+        private string OutputByFizz(int number)
+        {
+            return IsDivisibleBy3(number) ? Fizz : null;
+        }
+
+        private string OutputFizzBuzz(int number)
+        {
+            return IsDivisibleBy3And5(number) 
+                ? Fizz_Buzz : null;
         }
 
         private bool IsDivisibleBy3And5(int number)
