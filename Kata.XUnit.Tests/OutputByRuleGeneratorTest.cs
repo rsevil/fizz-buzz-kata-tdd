@@ -19,7 +19,7 @@ namespace Kata.XUnit.Tests
         {
             rule.Matches(Arg.Any<int>()).Returns(true);
 
-            var output = outputByRuleGenerator.GetOutputByNumber(1);
+            var output = outputByRuleGenerator.GenerateOutputByNumber(1);
             
             Assert.Equal("Output", output);
         }
@@ -29,7 +29,7 @@ namespace Kata.XUnit.Tests
         {
             rule.Matches(Arg.Any<int>()).Returns(false);
 
-            var output = outputByRuleGenerator.GetOutputByNumber(1);
+            var output = outputByRuleGenerator.GenerateOutputByNumber(1);
             
             Assert.Null(output);
         } 

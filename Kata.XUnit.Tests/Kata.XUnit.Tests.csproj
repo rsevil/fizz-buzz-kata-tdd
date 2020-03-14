@@ -84,6 +84,7 @@
   <ItemGroup>
     <Compile Include="FizzBuzzTest.cs" />
     <Compile Include="IsNumberDivisibleByRuleTest.cs" />
+    <Compile Include="MultipleOutputByNumbersGeneratorTest.cs" />
     <Compile Include="OutputByRuleGeneratorTest.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

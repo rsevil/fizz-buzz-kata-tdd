@@ -60,6 +60,7 @@
   <ItemGroup>
     <Compile Include="FizzBuzz.cs" />
     <Compile Include="IsNumberDivisibleByRule.cs" />
+    <Compile Include="MultipleOutputByNumbersGenerator.cs" />
     <Compile Include="NumberMatchingRule.cs" />
     <Compile Include="OutputByNumberGenerator.cs" />
     <Compile Include="OutputByRuleGenerator.cs" />

@@ -11,7 +11,7 @@ namespace Kata
             this.output = output;
         }
 
-        public string GetOutputByNumber(int number)
+        public string GenerateOutputByNumber(int number)
         {
             return When(rule.Matches(number), output);
         }
