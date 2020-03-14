@@ -82,6 +82,8 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="AndNumberMatchingRuleTest.cs" />
+    <Compile Include="DirectOutputGeneratorTest.cs" />
     <Compile Include="FizzBuzzTest.cs" />
     <Compile Include="IsNumberDivisibleByRuleTest.cs" />
     <Compile Include="MultipleOutputByNumbersGeneratorTest.cs" />

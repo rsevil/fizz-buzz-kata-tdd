@@ -1,8 +1,6 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using NSubstitute;
-using NSubstitute.ReturnsExtensions;
 using Xunit;
 
 namespace Kata.XUnit.Tests
@@ -10,14 +8,10 @@ namespace Kata.XUnit.Tests
     public class FizzBuzzTest
     {
         private FizzBuzz fizzBuzz;
-        private OutputByNumberGenerator outputGenerator;
 
         public FizzBuzzTest()
         {
-            outputGenerator = Substitute.For<OutputByNumberGenerator>();
-            outputGenerator.GenerateOutputByNumber(Arg.Any<int>()).ReturnsNull();
-            
-            fizzBuzz = new FizzBuzz(outputGenerator);
+            fizzBuzz = new FizzBuzzFactory().Create();
         }
 
         [Fact]
@@ -25,20 +19,9 @@ namespace Kata.XUnit.Tests
         {
             var numbers = new List<int>();
 
-            Action action = () => fizzBuzz.Execute(numbers);
+            Action action = () => fizzBuzz(numbers);
 
             Assert.Throws<Exception>(action);
-        }
-
-        [Fact]
-        public void prints_by_output_generator()
-        {
-            var numbers = new List<int> { 1 };
-            outputGenerator.GenerateOutputByNumber(1).Returns("CustomOutput");
-            
-            var output = fizzBuzz.Execute(numbers);
-            
-            Assert.Equal("CustomOutput", output.First());    
         }
 
         [Fact]
@@ -46,7 +29,7 @@ namespace Kata.XUnit.Tests
         {
             var numbers = new List<int> { 3 };
             
-            var output = fizzBuzz.Execute(numbers);
+            var output = fizzBuzz(numbers);
             
             Assert.Equal("Fizz", output.First()); 
         }
@@ -56,7 +39,7 @@ namespace Kata.XUnit.Tests
         {
             var numbers = new List<int> { 5 };
             
-            var output = fizzBuzz.Execute(numbers);
+            var output = fizzBuzz(numbers);
             
             Assert.Equal("Buzz", output.First()); 
         }
@@ -66,7 +49,7 @@ namespace Kata.XUnit.Tests
         {
             var numbers = new List<int> { 4 };
             
-            var output = fizzBuzz.Execute(numbers);
+            var output = fizzBuzz(numbers);
             
             Assert.Equal("4", output.First()); 
         }
@@ -77,7 +60,7 @@ namespace Kata.XUnit.Tests
         {
             var numbers = new List<int> { 15 };
             
-            var output = fizzBuzz.Execute(numbers);
+            var output = fizzBuzz(numbers);
             
             Assert.Equal("FizzBuzz", output.First()); 
         }
@@ -87,7 +70,7 @@ namespace Kata.XUnit.Tests
         {
             var numbers = new List<int> { 6, 10, 4 };
             
-            var output = fizzBuzz.Execute(numbers);
+            var output = fizzBuzz(numbers);
             
             Assert.Equal("Fizz", output[0]);
             Assert.Equal("Buzz", output[1]);

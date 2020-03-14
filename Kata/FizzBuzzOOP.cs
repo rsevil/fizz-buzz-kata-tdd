@@ -4,7 +4,8 @@ using System.Linq;
 
 namespace Kata
 {
-    public class FizzBuzz
+    [Obsolete]
+    public class FizzBuzzOOP
     {
         const string Fizz = "Fizz";
         const string Buzz = "Buzz";
@@ -12,7 +13,7 @@ namespace Kata
         
         private readonly Func<int, string>[] outputGenerators;
         
-        public FizzBuzz(OutputByNumberGenerator outputGenerator)
+        public FizzBuzzOOP(OutputByNumberGenerator outputGenerator)
         {
             outputGenerators = new Func<int, string>[]
             {

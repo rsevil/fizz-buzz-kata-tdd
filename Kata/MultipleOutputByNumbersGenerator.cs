@@ -1,6 +1,6 @@
+using System;
 using System.Collections.Generic;
 using System.Linq;
-using Microsoft.SqlServer.Server;
 
 namespace Kata
 {
@@ -14,6 +14,18 @@ namespace Kata
         }
 
         public List<string> GenerateOutput(List<int> numbers)
+        {
+            EnsureInputIsNotEmpty(numbers);
+            return MapToOutput(numbers);
+        }
+
+        private static void EnsureInputIsNotEmpty(List<int> numbers)
+        {
+            if (!numbers.Any())
+                throw new Exception();
+        }
+
+        private List<string> MapToOutput(List<int> numbers)
         {
             return numbers
                 .Select(GenerateOutputByNumber)

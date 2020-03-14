@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using NSubstitute;
 using NSubstitute.ReturnsExtensions;
@@ -30,6 +31,16 @@ namespace Kata.XUnit.Tests
             Assert.Equal("2", result[1]);
             Assert.Equal("3", result[2]);
         }
+        
+        [Fact]
+        public void throws_error_on_empty_input()
+        {
+            var numbers = new List<int>();
+
+            Action action = () => multipleOutputByNumbersGenerator.GenerateOutput(numbers);
+
+            Assert.Throws<Exception>(action);
+        } 
 
         private static OutputByNumberGenerator GetOutputByNumberGenerator(int number)
         {

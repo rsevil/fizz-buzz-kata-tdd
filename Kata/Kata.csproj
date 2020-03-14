@@ -58,7 +58,10 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="FizzBuzz.cs" />
+    <Compile Include="AndNumberMatchingRule.cs" />
+    <Compile Include="DirectOutputGenerator.cs" />
+    <Compile Include="FizzBuzzOOP.cs" />
+    <Compile Include="FizzBuzzFactory.cs" />
     <Compile Include="IsNumberDivisibleByRule.cs" />
     <Compile Include="MultipleOutputByNumbersGenerator.cs" />
     <Compile Include="NumberMatchingRule.cs" />
