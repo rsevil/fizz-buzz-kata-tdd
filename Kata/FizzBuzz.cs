@@ -31,10 +31,17 @@ namespace Kata
 
         private string GetOutputByNumber(int number)
         {
-            return TryOutputFizzBuzz(number) 
-                 ?? TryOutputFizz(number) 
-                 ?? TryOutputBuzz(number) 
-                 ?? OutputNumber(number);
+            var outputGenerators = new Func<int, string>[]
+            {
+                TryOutputFizzBuzz,
+                TryOutputFizz,
+                TryOutputBuzz,
+                OutputNumber
+            };
+            
+            return outputGenerators
+                .Select(output => output(number))
+                .First(output => output != null);
         }
 
         private string TryOutputFizzBuzz(int number)
