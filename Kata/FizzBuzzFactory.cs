@@ -9,23 +9,35 @@ namespace Kata
         private const string Fizz = "Fizz";
         private const string Buzz = "Buzz";
         
-        public static FizzBuzz Create()
-        {
-            var isNumberDivisibleBy3Rule = NumberMatchingRuleFactory.MatchWhenDivisibleBy(3);
-            var isNumberDivisibleBy5Rule = NumberMatchingRuleFactory.MatchWhenDivisibleBy(5);
-            var isNumberDivisibleBy3And5Rule = NumberMatchingRuleFactory.And(
-                isNumberDivisibleBy3Rule, isNumberDivisibleBy5Rule);
+        public static FizzBuzz Create() 
+            => numbers => MultipleOutputByNumbersGenerator()(numbers);
 
-            var fizzBuzzGenerator = OutputByNumberGeneratorFactory.RuledWithFixedOutput(isNumberDivisibleBy3And5Rule, Fizz + Buzz);
-            var fizzGenerator = OutputByNumberGeneratorFactory.RuledWithFixedOutput(isNumberDivisibleBy3Rule, Fizz);
-            var buzzGenerator = OutputByNumberGeneratorFactory.RuledWithFixedOutput(isNumberDivisibleBy5Rule, Buzz);
-            var numberGenerator = OutputByNumberGeneratorFactory.Passthrough();
-            
-            var multipleOutputByNumbersGenerator = MultipleOutputByNumbersGeneratorFactory.For(
-                fizzBuzzGenerator, fizzGenerator, buzzGenerator, numberGenerator
-            );
-            
-            return numbers => multipleOutputByNumbersGenerator(numbers);
-        }
+        private static MultipleOutputByNumbersGenerator MultipleOutputByNumbersGenerator() 
+            => MultipleOutputByNumbersGeneratorFactory.For(
+                FizzBuzzGenerator(), FizzGenerator(), BuzzGenerator(), NumberGenerator());
+
+        private static OutputByNumberGenerator FizzBuzzGenerator() 
+            => OutputByNumberGeneratorFactory
+                .RuledWithFixedOutput(IsNumberDivisibleBy3And5Rule(), Fizz + Buzz);
+
+        private static OutputByNumberGenerator FizzGenerator() 
+            => OutputByNumberGeneratorFactory
+                .RuledWithFixedOutput(IsNumberDivisibleBy3Rule(), Fizz);
+
+        private static OutputByNumberGenerator BuzzGenerator() 
+            => OutputByNumberGeneratorFactory
+                .RuledWithFixedOutput(IsNumberDivisibleBy5Rule(), Buzz);
+
+        private static OutputByNumberGenerator NumberGenerator() 
+            => OutputByNumberGeneratorFactory.Passthrough();
+
+        private static NumberMatchingRule IsNumberDivisibleBy3And5Rule() 
+            => IsNumberDivisibleBy3Rule().And(IsNumberDivisibleBy5Rule());
+
+        private static NumberMatchingRule IsNumberDivisibleBy3Rule() 
+            => NumberMatchingRuleFactory.MatchWhenDivisibleBy(3);
+
+        private static NumberMatchingRule IsNumberDivisibleBy5Rule() 
+            => NumberMatchingRuleFactory.MatchWhenDivisibleBy(5);
     }
 }
