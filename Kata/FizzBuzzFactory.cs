@@ -10,7 +10,7 @@ namespace Kata
         private const string Buzz = "Buzz";
         
         public static FizzBuzz Create() 
-            => numbers => MultipleOutputByNumbersGenerator()(numbers);
+            => MultipleOutputByNumbersGenerator().Invoke;
 
         private static MultipleOutputByNumbersGenerator MultipleOutputByNumbersGenerator() 
             => MultipleOutputByNumbersGeneratorFactory.For(
