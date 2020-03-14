@@ -12,14 +12,15 @@ namespace Kata
         
         private readonly Func<int, string>[] outputGenerators;
         
-        public FizzBuzz()
+        public FizzBuzz(OutputByNumberGenerator outputGenerator)
         {
             outputGenerators = new Func<int, string>[]
             {
                 TryOutputFizzBuzz,
                 TryOutputFizz,
                 TryOutputBuzz,
-                OutputNumber
+                outputGenerator.GetOutputByNumber,
+                OutputNumber,
             };
         }
 

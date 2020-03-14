@@ -59,6 +59,10 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="FizzBuzz.cs" />
+    <Compile Include="IsNumberDivisibleByRule.cs" />
+    <Compile Include="NumberMatchingRule.cs" />
+    <Compile Include="OutputByNumberGenerator.cs" />
+    <Compile Include="OutputByRuleGenerator.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

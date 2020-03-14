@@ -83,6 +83,8 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="FizzBuzzTest.cs" />
+    <Compile Include="IsNumberDivisibleByRuleTest.cs" />
+    <Compile Include="OutputByRuleGeneratorTest.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

@@ -1,6 +1,8 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using NSubstitute;
+using NSubstitute.ReturnsExtensions;
 using Xunit;
 
 namespace Kata.XUnit.Tests
@@ -8,10 +10,14 @@ namespace Kata.XUnit.Tests
     public class FizzBuzzTest
     {
         private FizzBuzz fizzBuzz;
+        private OutputByNumberGenerator outputGenerator;
 
         public FizzBuzzTest()
-        {    
-            fizzBuzz = new FizzBuzz();
+        {
+            outputGenerator = Substitute.For<OutputByNumberGenerator>();
+            outputGenerator.GetOutputByNumber(Arg.Any<int>()).ReturnsNull();
+            
+            fizzBuzz = new FizzBuzz(outputGenerator);
         }
 
         [Fact]
@@ -22,6 +28,17 @@ namespace Kata.XUnit.Tests
             Action action = () => fizzBuzz.Execute(numbers);
 
             Assert.Throws<Exception>(action);
+        }
+
+        [Fact]
+        public void prints_by_output_generator()
+        {
+            var numbers = new List<int> { 1 };
+            outputGenerator.GetOutputByNumber(1).Returns("CustomOutput");
+            
+            var output = fizzBuzz.Execute(numbers);
+            
+            Assert.Equal("CustomOutput", output.First());    
         }
 
         [Fact]
