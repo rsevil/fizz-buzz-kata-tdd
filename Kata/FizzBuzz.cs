@@ -27,11 +27,10 @@ namespace Kata
             var output = new List<string>(); 
             foreach (var number in numbers)
             {
-                if (IsDivisibleBy3(number))
-                    if (IsDivisibleBy5(number))
-                        output.Add(Fizz_Buzz);
-                    else
-                        output.Add(Fizz);
+                if (IsDivisibleBy3(number) && IsDivisibleBy5(number))
+                    output.Add(Fizz_Buzz);
+                else if (IsDivisibleBy5(number))
+                    output.Add(Fizz);
                 else if (IsDivisibleBy5(number))
                     output.Add(Buzz);
                 else
