@@ -9,6 +9,19 @@ namespace Kata
         const string Fizz = "Fizz";
         const string Buzz = "Buzz";
         const string Fizz_Buzz = "FizzBuzz";
+        
+        private readonly Func<int, string>[] outputGenerators;
+        
+        public FizzBuzz()
+        {
+            outputGenerators = new Func<int, string>[]
+            {
+                TryOutputFizzBuzz,
+                TryOutputFizz,
+                TryOutputBuzz,
+                OutputNumber
+            };
+        }
 
         public List<string> Execute(List<int> numbers)
         {
@@ -31,14 +44,6 @@ namespace Kata
 
         private string GetOutputByNumber(int number)
         {
-            var outputGenerators = new Func<int, string>[]
-            {
-                TryOutputFizzBuzz,
-                TryOutputFizz,
-                TryOutputBuzz,
-                OutputNumber
-            };
-            
             return outputGenerators
                 .Select(output => output(number))
                 .First(output => output != null);
