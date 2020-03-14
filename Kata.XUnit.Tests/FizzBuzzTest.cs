@@ -15,7 +15,7 @@ namespace Kata.XUnit.Tests
         public FizzBuzzTest()
         {
             outputGenerator = Substitute.For<OutputByNumberGenerator>();
-            outputGenerator.GetOutputByNumber(Arg.Any<int>()).ReturnsNull();
+            outputGenerator.GenerateOutputByNumber(Arg.Any<int>()).ReturnsNull();
             
             fizzBuzz = new FizzBuzz(outputGenerator);
         }
@@ -34,7 +34,7 @@ namespace Kata.XUnit.Tests
         public void prints_by_output_generator()
         {
             var numbers = new List<int> { 1 };
-            outputGenerator.GetOutputByNumber(1).Returns("CustomOutput");
+            outputGenerator.GenerateOutputByNumber(1).Returns("CustomOutput");
             
             var output = fizzBuzz.Execute(numbers);
             
