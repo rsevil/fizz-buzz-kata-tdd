@@ -58,7 +58,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="FizzBuzzOOP.cs" />
+    <Compile Include="FizzBuzz.cs" />
     <Compile Include="FizzBuzzFactory.cs" />
     <Compile Include="MultipleOutputByNumbersGenerator.cs" />
     <Compile Include="NumberMatchingRuleFactory.cs" />

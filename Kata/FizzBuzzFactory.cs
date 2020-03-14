@@ -1,9 +1,5 @@
-using System.Collections.Generic;
-
 namespace Kata
 {
-    public delegate List<string> FizzBuzz(List<int> numbers);
-
     public static class FizzBuzzFactory
     {
         private const string Fizz = "Fizz";
