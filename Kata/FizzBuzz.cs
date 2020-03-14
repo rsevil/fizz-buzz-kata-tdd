@@ -13,7 +13,7 @@ namespace Kata
         public List<string> Execute(List<int> numbers)
         {
             EnsureThatNumbersIsNotEmpty(numbers);
-            return GenerateOutput(numbers);
+            return MapNumbersToOutput(numbers);
         }
 
         private static void EnsureThatNumbersIsNotEmpty(List<int> numbers)
@@ -22,13 +22,11 @@ namespace Kata
                 throw new Exception("No me pases lista vacia");
         }
 
-        private List<string> GenerateOutput(List<int> numbers)
+        private List<string> MapNumbersToOutput(List<int> numbers)
         {
-            var output = new List<string>(); 
-            foreach (var number in numbers)
-                output.Add(GetOutputByNumber(number));
-
-            return output;
+            return numbers
+                .Select(GetOutputByNumber)
+                .ToList();
         }
 
         private string GetOutputByNumber(int number)
@@ -36,7 +34,7 @@ namespace Kata
             string outputByNumber;
             if (IsDivisibleBy3And5(number))
                 outputByNumber = Fizz_Buzz;
-            else if (IsDivisibleBy5(number))
+            else if (IsDivisibleBy3(number))
                 outputByNumber = Fizz;
             else if (IsDivisibleBy5(number))
                 outputByNumber = Buzz;
