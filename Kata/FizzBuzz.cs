@@ -26,20 +26,28 @@ namespace Kata
         {
             var output = new List<string>(); 
             foreach (var number in numbers)
-            {
-                if (IsDivisibleBy3(number) && IsDivisibleBy5(number))
-                    output.Add(Fizz_Buzz);
-                else if (IsDivisibleBy5(number))
-                    output.Add(Fizz);
-                else if (IsDivisibleBy5(number))
-                    output.Add(Buzz);
-                else
-                {
-                    output.Add(number.ToString());
-                }
-            }
+                output.Add(GetOutputByNumber(number));
 
             return output;
+        }
+
+        private string GetOutputByNumber(int number)
+        {
+            string outputByNumber;
+            if (IsDivisibleBy3And5(number))
+                outputByNumber = Fizz_Buzz;
+            else if (IsDivisibleBy5(number))
+                outputByNumber = Fizz;
+            else if (IsDivisibleBy5(number))
+                outputByNumber = Buzz;
+            else
+                outputByNumber = number.ToString();
+            return outputByNumber;
+        }
+
+        private bool IsDivisibleBy3And5(int number)
+        {
+            return IsDivisibleBy3(number) && IsDivisibleBy5(number);
         }
 
         private bool IsDivisibleBy5(int number)
