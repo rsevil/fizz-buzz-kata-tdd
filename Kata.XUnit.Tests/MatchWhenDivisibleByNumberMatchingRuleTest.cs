@@ -2,13 +2,13 @@ using Xunit;
 
 namespace Kata.XUnit.Tests
 {
-    public class IsNumberDivisibleByRuleTest
+    public class MatchWhenDivisibleByNumberMatchingRuleTest
     {
         private NumberMatchingRule isNumberDivisibleByRule;
 
-        public IsNumberDivisibleByRuleTest()
+        public MatchWhenDivisibleByNumberMatchingRuleTest()
         {
-            isNumberDivisibleByRule = IsNumberDivisibleByRuleFn.Where(3);
+            isNumberDivisibleByRule = NumberMatchingRuleFactory.MatchWhenDivisibleBy(3);
         }
 
         [Fact]

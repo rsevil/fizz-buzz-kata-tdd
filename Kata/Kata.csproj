@@ -58,15 +58,14 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="AndNumberMatchingRule.cs" />
-    <Compile Include="DirectOutputGenerator.cs" />
     <Compile Include="FizzBuzzOOP.cs" />
     <Compile Include="FizzBuzzFactory.cs" />
-    <Compile Include="IsNumberDivisibleByRule.cs" />
     <Compile Include="MultipleOutputByNumbersGenerator.cs" />
+    <Compile Include="NumberMatchingRuleFactory.cs" />
+    <Compile Include="MultipleOutputByNumbersGeneratorFactory.cs" />
     <Compile Include="NumberMatchingRule.cs" />
     <Compile Include="OutputByNumberGenerator.cs" />
-    <Compile Include="OutputByRuleGenerator.cs" />
+    <Compile Include="OutputByNumberGeneratorFactory.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

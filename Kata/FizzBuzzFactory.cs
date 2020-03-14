@@ -11,18 +11,17 @@ namespace Kata
         
         public static FizzBuzz Create()
         {
-            var isNumberDivisibleBy3Rule = IsNumberDivisibleByRuleFn.Where(3);
-            var isNumberDivisibleBy5Rule = IsNumberDivisibleByRuleFn.Where(5);
-            var isNumberDivisibleBy3And5Rule = AndNumberMatchingRule.And(
+            var isNumberDivisibleBy3Rule = NumberMatchingRuleFactory.MatchWhenDivisibleBy(3);
+            var isNumberDivisibleBy5Rule = NumberMatchingRuleFactory.MatchWhenDivisibleBy(5);
+            var isNumberDivisibleBy3And5Rule = NumberMatchingRuleFactory.And(
                 isNumberDivisibleBy3Rule, isNumberDivisibleBy5Rule);
 
-            var fizzBuzzGenerator = OutputByRuleGenerator.For(isNumberDivisibleBy3And5Rule, Fizz + Buzz);
+            var fizzBuzzGenerator = OutputByNumberGeneratorFactory.RuledWithFixedOutput(isNumberDivisibleBy3And5Rule, Fizz + Buzz);
+            var fizzGenerator = OutputByNumberGeneratorFactory.RuledWithFixedOutput(isNumberDivisibleBy3Rule, Fizz);
+            var buzzGenerator = OutputByNumberGeneratorFactory.RuledWithFixedOutput(isNumberDivisibleBy5Rule, Buzz);
+            var numberGenerator = OutputByNumberGeneratorFactory.Passthrough();
             
-            var fizzGenerator = OutputByRuleGenerator.For(isNumberDivisibleBy3Rule, Fizz);
-            var buzzGenerator = OutputByRuleGenerator.For(isNumberDivisibleBy5Rule, Buzz);
-            var numberGenerator = DirectOutputGenerator.For();
-            
-            var multipleOutputByNumbersGenerator = MultipleOutputByNumbersGenerator.For(
+            var multipleOutputByNumbersGenerator = MultipleOutputByNumbersGeneratorFactory.For(
                 fizzBuzzGenerator, fizzGenerator, buzzGenerator, numberGenerator
             );
             

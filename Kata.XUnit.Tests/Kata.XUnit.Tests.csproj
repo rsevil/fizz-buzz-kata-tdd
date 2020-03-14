@@ -83,9 +83,9 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="AndNumberMatchingRuleTest.cs" />
-    <Compile Include="DirectOutputGeneratorTest.cs" />
+    <Compile Include="PassthroughOutputByNumberGeneratorTest.cs" />
     <Compile Include="FizzBuzzTest.cs" />
-    <Compile Include="IsNumberDivisibleByRuleTest.cs" />
+    <Compile Include="MatchWhenDivisibleByNumberMatchingRuleTest.cs" />
     <Compile Include="MultipleOutputByNumbersGeneratorTest.cs" />
     <Compile Include="OutputByRuleGeneratorTest.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

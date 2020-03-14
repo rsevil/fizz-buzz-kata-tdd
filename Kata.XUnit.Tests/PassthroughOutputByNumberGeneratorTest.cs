@@ -2,13 +2,13 @@ using Xunit;
 
 namespace Kata.XUnit.Tests
 {
-    public class DirectOutputGeneratorTest
+    public class PassthroughOutputByNumberGeneratorTest
     {
         private OutputByNumberGenerator directOutputGenerator;
 
-        public DirectOutputGeneratorTest()
+        public PassthroughOutputByNumberGeneratorTest()
         {
-            directOutputGenerator = DirectOutputGenerator.For();
+            directOutputGenerator = OutputByNumberGeneratorFactory.Passthrough();
         }
 
         [Fact]

@@ -14,7 +14,7 @@ namespace Kata.XUnit.Tests
             left = Substitute.For<NumberMatchingRule>();
             right = Substitute.For<NumberMatchingRule>();
             
-            andNumberMatchingRule = AndNumberMatchingRule.And(left, right);
+            andNumberMatchingRule = NumberMatchingRuleFactory.And(left, right);
         }
 
         [Fact]

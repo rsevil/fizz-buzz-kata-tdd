@@ -8,7 +8,7 @@ namespace Kata.XUnit.Tests
 {
     public class MultipleOutputByNumbersGeneratorTest
     {
-        private MultipleOutputByNumbersGeneratorFn multipleOutputByNumbersGenerator;
+        private MultipleOutputByNumbersGenerator multipleOutputByNumbersGenerator;
 
         public MultipleOutputByNumbersGeneratorTest()
         {
@@ -16,7 +16,7 @@ namespace Kata.XUnit.Tests
             var generator2 = GetOutputByNumberGenerator(2);
             var generator3 = GetOutputByNumberGenerator(3);
             
-            multipleOutputByNumbersGenerator = MultipleOutputByNumbersGenerator.For(
+            multipleOutputByNumbersGenerator = MultipleOutputByNumbersGeneratorFactory.For(
                 generator, generator2, generator3);
         }
 
